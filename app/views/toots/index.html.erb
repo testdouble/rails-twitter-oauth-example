@@ -1,0 +1,28 @@
+<h1>Toots</h1>
+
+<% if @current_user.twitter_authorizations.any? %>
+  <%= render partial: "form", locals: {toot: Toot.new} %>
+<% else %>
+  <%= link_to "Sign in to start tweeting", twitter_authorizations_path %>
+<% end %>
+
+<h2>Drafts</h2>
+<div class="toots">
+  <% @toots.draft.each do |toot| %>
+    <%= render partial: "toot", locals: {toot: toot} %>
+  <% end %>
+</div>
+
+<h2>Ready</h2>
+<div class="toots">
+  <% @toots.ready.each do |toot| %>
+    <%= render partial: "toot", locals: {toot: toot} %>
+  <% end %>
+</div>
+
+<h2>Sent</h2>
+<div class="toots">
+  <% @toots.sent.each do |toot| %>
+    <%= render partial: "toot", locals: {toot: toot} %>
+  <% end %>
+</div>

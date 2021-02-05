@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails Twitter OAuth Example App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to "Accounts", twitter_authorizations_path %>
+        </li>
+        <li>
+          <%= link_to "Tweets", toots_path %>
+        </li>
+      </ul>
+    </nav>
+    <div id="flashes">
+      <% [:info, :error].each do |type| %>
+        <div class="<%= type %>">
+          <%= flash[type] %>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

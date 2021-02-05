@@ -1,0 +1,7 @@
+<%= form_with model: toot, class: "composer" do |f| %>
+  <%= f.text_area :text %>
+  <%= f.collection_select :twitter_authorization_id, @current_user.twitter_authorizations, :id, :handle %>
+  <%= f.label :draft %>
+  <%= f.check_box :draft %>
+  <%= f.submit "Save" %>
+<% end %>

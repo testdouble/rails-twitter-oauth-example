@@ -1,0 +1,15 @@
+<div class="toot">
+  <div class="text"><%= toot.text %></div>
+  <% if @current_user.twitter_authorizations.count > 1 %>
+    <span class="author">@<%= toot.twitter_authorization.handle %></span>
+  <% end %>
+  <% if toot.sent_to_twitter_at? %>
+    <time datetime="<%= toot.sent_to_twitter_at.iso8601 %>">
+      <%= link_to toot.sent_to_twitter_at_human,
+        "https://twitter.com/#{toot.twitter_authorization.handle}/status/#{toot.tweet_id}"
+      %>
+    </time>
+  <% else %>
+    <%= link_to "Edit", edit_toot_path(toot) %>
+  <% end %>
+</div>

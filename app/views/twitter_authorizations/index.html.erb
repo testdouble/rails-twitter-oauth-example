@@ -1,0 +1,13 @@
+<h1>Twitter Authorizations for <%= @current_user.name %></h1>
+
+<ol>
+  <% @twitter_authorizations.each do |twitter_authorization| %>
+    <li>
+      <%= link_to "@#{twitter_authorization.handle}", "https://twitter.com/#{twitter_authorization.handle}" %>
+      (<%= link_to "Sign out", twitter_authorization_path(twitter_authorization), method: :delete, data: {confirm: ("This will also delete all scheduled tweets for @#{twitter_authorization.handle}! Are you sure?" if twitter_authorization.toots.any?)}  %>)
+    </li>
+  <% end %>
+</ol>
+
+<%= link_to "Sign into Twitter", twitter_authorizations_path, method: :post %>
+
